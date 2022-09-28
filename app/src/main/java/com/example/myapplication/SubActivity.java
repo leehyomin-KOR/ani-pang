@@ -51,9 +51,12 @@ public class SubActivity extends AppCompatActivity {
                 plate.post(new Runnable() {
                     @Override
                     public void run() {
+                        setArray();
+                        /*
                         do {
                             setArray();
                         } while(checkArray());
+                         */
                     }
                 });
             }
