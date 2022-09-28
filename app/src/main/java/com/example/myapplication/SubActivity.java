@@ -1,12 +1,18 @@
 package com.example.myapplication;
 
+import static com.google.android.material.internal.ViewUtils.removeOnGlobalLayoutListener;
+
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.util.ArrayList;
 
 public class SubActivity extends AppCompatActivity {
     private ViewTreeObserver.OnGlobalLayoutListener mGlobalLayoutListener;
@@ -77,5 +83,115 @@ public class SubActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private boolean checkArray() {
+        final ArrayList<String> removeList = new ArrayList<>();
+        boolean flag = false; //리턴할 변수
+
+        for(int q = 0; q < array.length; q++) {
+            for(int w = 0; w < array[q].length; w++) {
+                int verticalMin = q - 2 < 0 ? 0 : q - 2;
+                int verticalMax = q + 2 >= array.length ? array.length - 1 : q + 2;
+                int horizontalMin = w - 2 < 0 ? 0 : w - 2;
+                int horizontalMax = w + 2 >= array.length ? array.length - 1 : w + 2;
+
+                int count = 0;
+                for(int e = verticalMin + 1; e <= verticalMax; e++) {
+                    //y축 검사
+                    if(array[e - 1][w].getType() == array[e][w].getType()) {
+                        count++;
+                    }
+                    else {
+                        count = 0;
+                    }
+
+                    if(count >= 2) {
+                        flag = true;
+
+                        removeList.add(q+","+w);
+                        for(int r = q + 1 ; r <= verticalMax ; r++) {
+                            if(array[q][w].getType() == array[r][w].getType()) {
+                                /* if(layout.getViewWidget(array[r][w]) != null) {
+                                    //리무브 애니메이션
+                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_pang);
+                                    array[r][w].startAnimation(anim);
+                                } */
+
+                                layout.removeView(array[r][w]);
+                                removeList.add(r+","+w);
+
+                            } else {
+                                break;
+                            }
+                        }
+
+                        for(int r = q - 1 ; r >= verticalMin ; r--) {
+                            if(array[q][w].getType() == array[r][w].getType()) {
+                                /* if(layout.getViewWidget(array[r][w]) != null) {
+                                    //리무브 애니메이션
+                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_pang);
+                                    dustArray[r][w].startAnimation(anim);
+                                } */
+
+                                layout.removeView(array[r][w]);
+                                removeList.add(r+","+w);
+                            } else {
+                                break;
+                            }
+                        }
+                        break;
+                    }
+               }
+
+                count = 0;
+                for(int e = horizontalMin + 1 ; e <= horizontalMax ; e++) {
+                    //가로 탐색
+                    if(array[q][e - 1].getType() == array[q][e].getType()) {
+                        count++;
+                    } else {
+                        count = 0;
+                    }
+
+                    if(count >= 2) {
+                        flag = true;
+
+                        removeList.add(q+","+w);
+                        for(int r = w + 1 ; r <= horizontalMax ; r++) {
+                            if(array[q][w].getType() == array[q][r].getType()) {
+                                /* if(layout.getViewWidget(array[q][r]) != null) {
+                                    //리무브 애니메이션
+                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_pang;
+                                    dustArray[q][r].startAnimation(anim);
+                                } */
+
+                                layout.removeView(array[q][r]);
+                                removeList.add(q+","+r);
+                            } else {
+                                break;
+                            }
+                        }
+
+                        for(int r = w - 1 ; r >= horizontalMin ; r--) {
+                            if(array[q][w].getType() == array[q][r].getType()) {
+                                /* if(layout.getViewWidget(array[q][r]) != null) {
+                                    //리무브 애니메이션
+                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_pang);
+                                    dustArray[q][r].startAnimation(anim);
+                                } */
+
+                                layout.removeView(array[q][r]);
+                                removeList.add(q+","+r);
+                            } else {
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        return flag;
     }
 }
