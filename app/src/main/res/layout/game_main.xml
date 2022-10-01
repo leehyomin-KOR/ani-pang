@@ -60,8 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        android:textSize="16sp"
         android:textColor="#ffffff"
+        android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView"
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
@@ -73,7 +73,8 @@
         android:layout_marginTop="8dp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/timer"/>
 
     <ProgressBar
         android:id="@+id/game_timer_bar"
@@ -81,9 +82,9 @@
         android:layout_width="0dp"
         android:layout_height="10dp"
         android:layout_marginEnd="8dp"
-        android:max="250"
-        android:progress="100"
-
+        android:max="600"
+        android:progress="0"
+        android:progressTint="#E8DF92"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/game_timer_img"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,9 +102,7 @@
         android:background="#B3000315"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game_hide_dust_bar">
-
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@+id/game_hide_dust_bar"/>
 
     <TextView
         android:id="@+id/game_hide_dust_bar"
@@ -124,7 +123,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Ready Go!!"
+        android:text="게임 시작!"
         android:textColor="#ffffff"
         android:textSize="50sp"
         android:shadowColor="#000000"
@@ -143,11 +142,11 @@
         android:layout_height="0dp"
         android:background="#96000000"
         android:gravity="center"
+        android:soundEffectsEnabled="false"
         android:text="PAUSED"
         android:textColor="#ffffff"
         android:textSize="50sp"
         android:visibility="invisible"
-        android:soundEffectsEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
