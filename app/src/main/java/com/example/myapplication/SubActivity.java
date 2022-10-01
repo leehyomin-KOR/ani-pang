@@ -86,9 +86,11 @@ public class SubActivity extends AppCompatActivity {
                         setArray();
 
                         do {
-                            //겹치는게 없을 때까지 판을 셋팅
-                            setArray();
-                        } while(checkArray());
+                            do {
+                                //겹치는게 없을 때까지 판을 셋팅
+                                setArray();
+                            } while(checkArray());
+                        } while(!checkPossible());
 
                         basicSetting();
                         startGame();
@@ -257,22 +259,48 @@ public class SubActivity extends AppCompatActivity {
         return flag;
     }
 
-    /*private boolean checkPossible() {
-        boolean pos = false; //리턴할 변수
-
+    private boolean checkPossible() {
         for(int q = 0; q < array.length; q++) {
             for (int w = 0; w < array[q].length; w++) {
                 int verticalMin = q == 0 ? 0 : q - 1;
-                int verticalMax = q + 2 >= array.length ? array.length - 1 : q + 2;
+                int verticalMax = q + 2 == array.length ? array.length - 1 : q + 1 ;
                 int horizontalMin = w == 0 ? 0 : w - 1;
-                int horizontalMax = w + 2 >= array.length ? array.length - 1 : w + 2;
+                int horizontalMax = w + 2 == array[q].length ? array[q].length - 1 : w + 1 ;
 
-                for(int e = )
+                if(verticalMax + 1 < array.length) {
+                    if(array[q][w].getType() == array[q+1][horizontalMin].getType()) {
+                        if(array[q][w].getType() == array[q+2][horizontalMin].getType() || array[q][w].getType() == array[q+2][w].getType())
+                            return true;
+                    }
+                    if(array[q][w].getType() == array[q+1][w].getType()) {
+                        if(array[q][w].getType() == array[q+2][horizontalMin].getType() || array[q][w].getType() == array[q+2][horizontalMax].getType())
+                            return true;
+                    }
+                    if(array[q][w].getType() == array[q+1][horizontalMax].getType()) {
+                        if(array[q][w].getType() == array[q+2][w].getType() || array[q][w].getType() == array[q+2][horizontalMax].getType())
+                            return true;
+                    }
+                }
+
+                if(horizontalMax + 1 < array[q].length) {
+                    if(array[q][w].getType() == array[verticalMin][w+1].getType()) {
+                        if(array[q][w].getType() == array[verticalMin][w+2].getType() || array[q][w].getType() == array[q][w+2].getType())
+                            return true;
+                    }
+                    if(array[q][w].getType() == array[q][w+1].getType()) {
+                        if(array[q][w].getType() == array[verticalMin][w+2].getType() || array[q][w].getType() == array[verticalMax][w+2].getType())
+                            return true;
+                    }
+                    if(array[q][w].getType() == array[verticalMax][w+1].getType()) {
+                        if(array[q][w].getType() == array[q][w+2].getType() || array[q][w].getType() == array[verticalMax][w+2].getType())
+                            return true;
+                    }
+                }
             }
         }
 
-        return pos;
-    }*/
+        return false;
+    }
 
     //게임 시작
     private void startGame() {
