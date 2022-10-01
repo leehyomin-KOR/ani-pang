@@ -26,6 +26,13 @@
                 android:value="" />
         </activity>
 
+        <activity
+            android:name=".RankActivity"
+            android:exported="false">
+
+        </activity>
+
+
         <activity android:name=".Setting" android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".SubActivity"/>
     </application>

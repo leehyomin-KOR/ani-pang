@@ -1,39 +1,40 @@
-/*
 package com.example.myapplication;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.InputStreamReader;
+
+public class Rank {
+    private String player_name;
+    private int score;
+    private String clear_date;
 
 
-public class Rank extends Activity {
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.rank);
-
-        Button close = (Button) findViewById(R.id.setting_done);
-        close.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                finish();
-            }
-        });
+    public Rank(String player_name, int score, String clear_date) {
+        this.player_name = player_name;
+        this.score = score;
+        this.clear_date = clear_date;
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
-        if(event.getAction() == MotionEvent.ACTION_OUTSIDE)
-            return false;
-        return true;
+    public String getPlayer_name() {
+        return player_name;
     }
+    public void setPlayer_name(String str) { this.player_name = str; }
 
-    @Override
-    public void onBackPressed(){
-        return;
+    public int getScore() {
+        return score;
     }
+    public void setScore(int score) { this.score = score; }
+
+    public String getClear_date() {
+        return clear_date;
+    }
+    public void setClear_date(String str) { this.clear_date =  str; }
+
+
+
 }
-*/
+
+
+
