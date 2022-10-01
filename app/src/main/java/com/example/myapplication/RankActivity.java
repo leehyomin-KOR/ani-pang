@@ -2,8 +2,10 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -13,8 +15,12 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOError;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -35,7 +41,7 @@ public class RankActivity extends AppCompatActivity {
         ListView rank_list_view = (ListView)findViewById(R.id.rank_list_view);
 
         try{  //랭크데이터를 열어 한줄씩 객체단위로 끊어서 rank_data_list에 저장
-            BufferedReader br = new BufferedReader(new FileReader("/data/data/com.example.myapplication/db.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("/data/data/com.example.ani-pang/files/db.txt"));
             String lines = "";
             while((lines = br.readLine()) != null){
                 String[] str = lines.split("-");
@@ -66,7 +72,7 @@ public class RankActivity extends AppCompatActivity {
         /* 랭크 데이터를 정렬된 버전으로 덮어쓰기
            앱 강종을 생각해서 onCreate에 작성*/
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("/data/data/com.example.myapplication/db.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("/data/data/com.example.ani-pang/files/db.txt"));
             for (Rank rank : rank_data_list) {
                 bw.write(rank.getPlayer_name() + "-"
                         + Integer.toString(rank.getScore()) + "-"

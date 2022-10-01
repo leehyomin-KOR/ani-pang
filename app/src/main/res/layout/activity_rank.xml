@@ -49,7 +49,7 @@
             app:layout_constraintTop_toTopOf="@id/rank_list_bar"
             app:layout_constraintStart_toEndOf="@id/rank_info_name"
             app:layout_constraintEnd_toStartOf="@id/rank_info_clear_date"
-             />
+            />
 
         <TextView
             android:id="@+id/rank_info_clear_date"

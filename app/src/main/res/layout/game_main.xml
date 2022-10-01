@@ -200,22 +200,13 @@
 
     <TextView
         android:id="@+id/currTime"
-<<<<<<<<< Temporary merge branch 1
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-=========
         android:layout_width="84dp"
         android:layout_height="19dp"
->>>>>>>>> Temporary merge branch 2
         android:layout_marginTop="76dp"
         android:layout_marginEnd="256dp"
         android:text="60초"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-<<<<<<<<< Temporary merge branch 1
-
-=========
->>>>>>>>> Temporary merge branch 2
 
 </androidx.constraintlayout.widget.ConstraintLayout>
