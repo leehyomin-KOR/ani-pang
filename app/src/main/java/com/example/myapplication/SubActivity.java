@@ -47,6 +47,7 @@ public class SubActivity extends AppCompatActivity {
     private int stackedNumber; //게임을 종료하기위해 쌓이는 값
     private int targetNumber; //stackedNumber가 도달해야 하는 값 (stackedNumber와 targetNumber의 값이 같아지면 게임 종료)
     private boolean timerThreadController;
+    private TextView currTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class SubActivity extends AppCompatActivity {
         userScoreView = findViewById(R.id.game_score);
         highScoreView = findViewById(R.id.game_high_score);
         hideDustBar = findViewById(R.id.game_hide_dust_bar);
+        currTime = findViewById(R.id.currTime);
         timerBar = findViewById(R.id.game_timer_bar);
         plate = findViewById(R.id.game_plate);
         array = new PangImageView[7][7];
@@ -263,10 +265,11 @@ public class SubActivity extends AppCompatActivity {
         for(int q = 0; q < array.length; q++) {
             for (int w = 0; w < array[q].length; w++) {
                 int verticalMin = q == 0 ? 0 : q - 1;
-                int verticalMax = q + 2 == array.length ? array.length - 1 : q + 1 ;
+                int verticalMax = q == array.length - 1 ? array.length - 1 : q + 1 ;
                 int horizontalMin = w == 0 ? 0 : w - 1;
-                int horizontalMax = w + 2 == array[q].length ? array[q].length - 1 : w + 1 ;
+                int horizontalMax = w == array[q].length - 1 ? array[q].length - 1 : w + 1 ;
 
+                //세로 탐색
                 if(verticalMax + 1 < array.length) {
                     if(array[q][w].getType() == array[q+1][horizontalMin].getType()) {
                         if(array[q][w].getType() == array[q+2][horizontalMin].getType() || array[q][w].getType() == array[q+2][w].getType())
@@ -281,7 +284,14 @@ public class SubActivity extends AppCompatActivity {
                             return true;
                     }
                 }
+                if(verticalMax + 2 < array.length) {
+                    if(array[q][w].getType() == array[q+3][w].getType()) {
+                        if(array[q][w].getType() == array[q+1][w].getType() || array[q][w].getType() == array[q+2][w].getType())
+                            return true;
+                    }
+                }
 
+                //가로 탐색
                 if(horizontalMax + 1 < array[q].length) {
                     if(array[q][w].getType() == array[verticalMin][w+1].getType()) {
                         if(array[q][w].getType() == array[verticalMin][w+2].getType() || array[q][w].getType() == array[q][w+2].getType())
@@ -293,6 +303,12 @@ public class SubActivity extends AppCompatActivity {
                     }
                     if(array[q][w].getType() == array[verticalMax][w+1].getType()) {
                         if(array[q][w].getType() == array[q][w+2].getType() || array[q][w].getType() == array[verticalMax][w+2].getType())
+                            return true;
+                    }
+                }
+                if(horizontalMax + 2 < array[q].length) {
+                    if(array[q][w].getType() == array[q][w+3].getType()) {
+                        if(array[q][w].getType() == array[q][w+1].getType() || array[q][w].getType() == array[q][w+2].getType())
                             return true;
                     }
                 }
@@ -379,6 +395,7 @@ public class SubActivity extends AppCompatActivity {
                             public void run() {
                                 //0.1초 마다 타이머 바 갱신
                                 timerBar.setProgress(targetNumber - stackedNumber);
+                                currTime.setText(""+String.format("%,d", (targetNumber - stackedNumber)/10)+"초");
                             }
                         });
 
