@@ -73,8 +73,7 @@
         android:layout_marginTop="8dp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/timer"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ProgressBar
         android:id="@+id/game_timer_bar"
@@ -88,9 +87,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/game_timer_img"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/game_timer_img"
         app:layout_constraintTop_toTopOf="@+id/game_timer_img"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.666" />
 
     <TextView
         android:id="@+id/game_plate"
@@ -195,6 +195,17 @@
         android:visibility="invisible"
         android:soundEffectsEnabled="false"
         app:layout_constraintEnd_toStartOf="@+id/game_background_sound_on_off"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currTime"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="256dp"
+        android:text="60초"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

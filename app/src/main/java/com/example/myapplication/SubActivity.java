@@ -39,6 +39,7 @@ public class SubActivity extends AppCompatActivity {
     private static final int GAME_TERMINATED = 2;
     private static final int GAME_PLAYING = 3;
     private Handler handler;
+    private TextView currTime;
 
     // 게임 시간 관련
     private ProgressBar timerBar;
@@ -55,6 +56,7 @@ public class SubActivity extends AppCompatActivity {
         layout = findViewById(R.id.constraint);
         userScoreView = findViewById(R.id.game_score);
         highScoreView = findViewById(R.id.game_high_score);
+        currTime = findViewById(R.id.currTime);
         hideDustBar = findViewById(R.id.game_hide_dust_bar);
         timerBar = findViewById(R.id.game_timer_bar);
         plate = findViewById(R.id.game_plate);
@@ -263,9 +265,9 @@ public class SubActivity extends AppCompatActivity {
         for(int q = 0; q < array.length; q++) {
             for (int w = 0; w < array[q].length; w++) {
                 int verticalMin = q == 0 ? 0 : q - 1;
-                int verticalMax = q + 2 == array.length ? array.length - 1 : q + 1 ;
+                int verticalMax = q + 1 == array.length ? array.length - 1 : q + 1 ;
                 int horizontalMin = w == 0 ? 0 : w - 1;
-                int horizontalMax = w + 2 == array[q].length ? array[q].length - 1 : w + 1 ;
+                int horizontalMax = w + 1 == array[q].length ? array[q].length - 1 : w + 1 ;
 
                 if(verticalMax + 1 < array.length) {
                     if(array[q][w].getType() == array[q+1][horizontalMin].getType()) {
@@ -354,10 +356,10 @@ public class SubActivity extends AppCompatActivity {
                 });
                 */
 
-                 gameStartMessage.setVisibility(View.INVISIBLE);
+                gameStartMessage.setVisibility(View.INVISIBLE);
 
-                 startGameTimer();
-                 //touchStatus = true; //터치 가능
+                startGameTimer();
+                //touchStatus = true; //터치 가능
             }
         }, 1500);
     }
@@ -379,6 +381,7 @@ public class SubActivity extends AppCompatActivity {
                             public void run() {
                                 //0.1초 마다 타이머 바 갱신
                                 timerBar.setProgress(targetNumber - stackedNumber);
+                                currTime.setText(""+String.format("%,d", (targetNumber - stackedNumber)/10)+"초");
                             }
                         });
 
