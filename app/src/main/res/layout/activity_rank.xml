@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RankActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rank_list_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#A61552BA"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/scroll">
+
+        <TextView
+            android:id="@+id/rank_info_no"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="순위"
+            android:textAlignment="center"
+            android:textFontWeight="800"
+            app:layout_constraintBottom_toBottomOf="@id/rank_list_bar"
+            app:layout_constraintEnd_toStartOf="@+id/rank_info_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rank_list_bar" />
+
+        <TextView
+            android:id="@+id/rank_info_name"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="유저 ID"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@id/rank_list_bar"
+            app:layout_constraintTop_toTopOf="@id/rank_list_bar"
+            app:layout_constraintStart_toEndOf="@id/rank_info_no"
+            app:layout_constraintEnd_toStartOf="@id/rank_info_score"
+            />
+
+        <TextView
+            android:id="@+id/rank_info_score"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="점수"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@id/rank_list_bar"
+            app:layout_constraintTop_toTopOf="@id/rank_list_bar"
+            app:layout_constraintStart_toEndOf="@id/rank_info_name"
+            app:layout_constraintEnd_toStartOf="@id/rank_info_clear_date"
+             />
+
+        <TextView
+            android:id="@+id/rank_info_clear_date"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="클리어 날짜"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@id/rank_list_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rank_info_score"
+            app:layout_constraintTop_toTopOf="@id/rank_list_bar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#601552BA"
+        app:layout_constraintBottom_toTopOf="@+id/list_view_bottom"
+        app:layout_constraintTop_toBottomOf="@+id/rank_list_bar">
+
+        <ListView
+            android:id="@+id/rank_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintStart_toStartOf="@id/scroll"
+            app:layout_constraintEnd_toEndOf="@id/scroll"
+            app:layout_constraintBottom_toBottomOf="@id/scroll"
+            app:layout_constraintTop_toTopOf="@id/scroll"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list_view_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#A61552BA"
+        app:layout_constraintTop_toBottomOf="@id/scroll"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/rank_quit"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="메인화면"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
