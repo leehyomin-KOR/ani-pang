@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+
 import java.util.ArrayList;
 
 public class SubActivity extends AppCompatActivity {
@@ -172,11 +173,11 @@ public class SubActivity extends AppCompatActivity {
 
                         for(int r = q - 1 ; r >= verticalMin ; r--) {
                             if(array[q][w].getType() == array[r][w].getType()) {
-                                /* if(layout.getViewWidget(array[r][w]) != null) {
+/*                                 if(layout.getViewWidget(array[r][w]) != null) {
                                     //리무브 애니메이션
-                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_pang);
-                                    dustArray[r][w].startAnimation(anim);
-                                } */
+                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_dust);
+                                    array[r][w].startAnimation(anim);
+                                }*/
 
                                 layout.removeView(array[r][w]);
                                 removeList.add(r+","+w);
@@ -203,11 +204,11 @@ public class SubActivity extends AppCompatActivity {
                         removeList.add(q+","+w);
                         for(int r = w + 1 ; r <= horizontalMax ; r++) {
                             if(array[q][w].getType() == array[q][r].getType()) {
-                                /* if(layout.getViewWidget(array[q][r]) != null) {
+/*                                 if(layout.getViewWidget(array[q][r]) != null) {
                                     //리무브 애니메이션
-                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_pang;
-                                    dustArray[q][r].startAnimation(anim);
-                                } */
+                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_dust);
+                                    array[q][r].startAnimation(anim);
+                                }*/
 
                                 layout.removeView(array[q][r]);
                                 removeList.add(q+","+r);
@@ -218,11 +219,11 @@ public class SubActivity extends AppCompatActivity {
 
                         for(int r = w - 1 ; r >= horizontalMin ; r--) {
                             if(array[q][w].getType() == array[q][r].getType()) {
-                                /* if(layout.getViewWidget(array[q][r]) != null) {
+/*                                 if(layout.getViewWidget(array[q][r]) != null) {
                                     //리무브 애니메이션
-                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_pang);
-                                    dustArray[q][r].startAnimation(anim);
-                                } */
+                                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.remove_dust);
+                                    array[q][r].startAnimation(anim);
+                                }*/
 
                                 layout.removeView(array[q][r]);
                                 removeList.add(q+","+r);
